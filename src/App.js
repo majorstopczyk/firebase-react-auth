@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react';
 import fire from './firebase';
 import Login from './components/Login';
-
-
+import Home from './components/Home';
 
 function App() {
   const [user, setUser] = useState('');
@@ -84,18 +83,22 @@ function App() {
   // app
   return (
     <div className="App">
-      <Login 
-      email={email}
-      setEmail={setEmail}
-      password={password}
-      setPassword={setPassword}
-      handleLogin={handleLogin}
-      handleSignUp={handleSignUp}
-      hasAccount={hasAccount}
-      setHasAccount={setHasAccount}
-      emailError={emailError}
-      passwordError={passwordError}
-      />
+      {user ? (
+        <Home handleLogout={handleLogout}/>
+      ) : (
+        <Login 
+          email={email}
+          setEmail={setEmail}
+          password={password}
+          setPassword={setPassword}
+          handleLogin={handleLogin}
+          handleSignUp={handleSignUp}
+          hasAccount={hasAccount}
+          setHasAccount={setHasAccount}
+          emailError={emailError}
+          passwordError={passwordError}
+        />
+      )}
     </div>
   );
 }
